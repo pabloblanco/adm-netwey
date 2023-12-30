@@ -1,0 +1,1 @@
+<footer class="footer text-center"><img src="logo_footer.png" alt="home" /> {{date('Y')}} &copy; Netwey todos los derechos reservados</footer>

@@ -1,0 +1,92 @@
+.p-t-25 {
+    padding-top: 25px;
+}
+.bc-hierarchy-12 {
+    background-color: antiquewhite !important;
+}
+.bc-hierarchy-11 {
+    background-color: aquamarine !important;
+}
+.bc-hierarchy-10 {
+    background-color: burlywood !important;
+}
+.bc-hierarchy-9 {
+    background-color: cadetblue !important;
+    color: #FFF !important;
+}
+.bc-hierarchy-8 {
+    background-color: cornflowerblue !important;
+    color: #FFF !important;
+}
+.bc-hierarchy-7 {
+    background-color: cyan !important;
+}
+.bc-hierarchy-6 {
+    background-color: darkgrey !important;
+}
+.bc-hierarchy-5 {
+    background-color: darkolivegreen !important;
+    color: #FFF !important;
+}
+.bc-hierarchy-4 {
+    background-color: burlywood !important;
+    color: #FFF !important;
+}
+.back-img {
+    width: calc(100% - 400px);
+    background-image: url(../img/netwey_b-l.png);
+    height: 100%;
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000;
+}
+.noti-report .message-center a {
+    text-transform: capitalize;
+}
+.noti-report .message-center i {
+    padding-right: 5px;
+}
+/*Ajax Loader*/
+
+.preloader-ajax {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    background-color: #FFF;
+    z-index: 99999;
+    left: 0px;
+}
+.preloader-ajax .cssload-speeding-wheel {
+    position: absolute;
+    top: calc(50% - 3.5px);
+    left: calc(50% - 3.5px);
+}
+.datepicker table tr td.disabled {
+    background-color: #eeecec;
+    color: #a28585;
+}
+.datepicker table tr td.disabled:hover {
+    background-color: #eeecec;
+    color: #a28585;
+}
+.datepicker table tr td.day:hover:not(.disabled) {
+    background-color: #eeecec;
+    color: #a28585;
+    border-radius: 50%;
+}
+.form-control[readonly] {
+    background-color: white !important;
+}
+.nw-link {
+    color: #337ab7 !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+}
+.nw-link:focus, .nw-link:hover {
+    ￼ color: #014c8c !important;
+    ￼ text-decoration: underline !important;
+    cursor: pointer !important;
+}

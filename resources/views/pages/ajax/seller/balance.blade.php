@@ -1,0 +1,160 @@
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" id="modal01">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reportar depósito</h4>
+      </div>
+      <div class="modal-body">
+        <form id="vendor_form" action="" method="POST">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    @if (session('user')->platform == 'admin')
+                      <label class="control-label">Vendedor/coordinador: <span id="modal_name"></span></label>
+                    @else
+                      <label class="control-label">Vendedor: <span id="modal_name"></span></label>
+                    @endif
+                  </div>
+                  <div class="col-md-12">
+                    <label class="control-label">Email: <span id="modal_email"></span></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="control-label">Teléfono: <span id="modal_phone"></span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="control-label">Coordinador: <span id="modal_coordinator"></span></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="control-label">Saldo para recargas: <span id="modal_balance_txt"></span></label>
+                    <span hidden id="modal_balance"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Número de depósito/transferencia</label>
+                    <input type="number" id="nro_deposit" name="nro_deposit" class="form-control" placeholder="N° de depósito/transferencia">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Fecha de depósito/transferencia</label>
+                    <div class="input-group">
+                      <input type="text" id="date_deposit" name="date_deposit" class="form-control" placeholder="yyyy/mm/dd">
+                      <span class="input-group-addon"><i class="icon-calender"></i></span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Banco</label>
+                  <select id="bank" name="bank" class="form-control" placeholder="Seleccionar Banco...">
+                    <option value="">Seleccionar Banco...</option>
+                    @foreach ($banks as $bank)
+                      <option value="{{ $bank->id }}">{{ $bank->name }}, Cuenta {{ $bank->numAcount }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Monto depositado</label>
+                    <input type="text" id="amount" name="amount" class="form-control" placeholder="Monto">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Imagen</label>
+                  <input type="file" id="image" name="image" class="form-control" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Monto a asignar: <span id="assigned_amount">0</span></label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Comisión: <span id="commissions_amount">0</span>%</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Total para recargas: <span id="total_amount">0</span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions modal-footer">
+                <button type="submit" class="btn btn-success" onclick="save();">Guardar</button>
+                <button type="button" id="form_close_btn" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<button hidden type="button" id="modal_open_btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"></button>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            @if (session('user')->platform == 'admin')
+              <h4 class="page-title">Asignación de saldo a vendedores/coordinadores</h4>
+            @else
+              <h4 class="page-title">Asignación de saldo a vendedores</h4>
+            @endif
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/islim/">Dashboard</a></li>
+              @if (session('user')->platform == 'admin')
+                  <li class="active">Asignación de saldo a vendedores/coordinadores</li>
+              @else
+                  <li class="active">Asignación de saldo a vendedores</li>
+              @endif
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row white-box">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table id="sellerBalanceTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Acciones</th>
+                  <th>Vendedor</th>
+                  <th>Coordinador</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+                  <th>Saldo para recargas</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/seller/balance.js"></script>

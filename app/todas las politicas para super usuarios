@@ -1,0 +1,7 @@
+1.- Errores con login de usuarios OPR - Efectivo y stock. Los elementos de asociados a los perfiles de usuario stock no son los acorders
+2.- Solicite que en el menú de perfiles no esten las categorias q no tienen politicas
+3.- Corregir que al ser tipo admin, no se puedan crear con ese tipo coordinadores o promotores o vendedores.
+4.- Al crear un usuario el email del supervisor creo q salen todos los usuarios y no solo los de esa Organización OJO solo deben salir (Gerentes comerciales, Coordinadores) mas ninguno.
+5.- Si estoy como operador de usuario de un organización siempre la organización debe estas seleccionada por defecto y no permitir cambiarla a otra o blanco (AL CREAR O EDITAR USUARIOS - Cuentas Operador usuario)
+6.- Si soy el usuario que accedio a la plataforma que tenga acceso a usuario no debería poder eliminar mi propia cuenta.
+7.- Como usuario de Efectivo (Operador) puede recibir dinero y procesar depositos solo de los usuario de mi organización, actualmente esta recibiendo de todos.
